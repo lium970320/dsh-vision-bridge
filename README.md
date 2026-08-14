@@ -24,6 +24,28 @@ dsh-vision-bridge/
 ├── README.md / CHANGELOG.md / LICENSE / VERSION.txt / .gitignore
 ```
 
+## NPM 包安装
+
+已发布到 npm：**[@liu__min/dsh-vision-bridge](https://www.npmjs.com/package/@liu__min/dsh-vision-bridge)**（`0.1.1`，公开，`dsh-plugin` 标签）
+
+两种安装方式：
+
+- **从 npm 拉取**（DSH 生态原生方式，装完需补打适配器补丁与配置）：
+  ```powershell
+  dsh plugin --profile web add @liu__min/dsh-vision-bridge
+  cd %USERPROFILE%\.dsh\profiles\web
+  node apply-vision-patch.js                # 打 pi-ai 适配器补丁
+  # 随后写 vision-bridge-config.json（见下方「配置视觉接口」）
+  ```
+- **从 GitHub clone + 一键脚本**（最省心，install.ps1 会自动完成复制/登记/声明/打补丁/自测）：
+  ```powershell
+  git clone https://github.com/lium970320/dsh-vision-bridge.git
+  cd dsh-vision-bridge
+  powershell -ExecutionPolicy Bypass -File install.ps1 -ApiBase <网址> -ApiKeyEnv <环境变量> -VisionModel <模型>
+  ```
+
+> 无论哪种方式，装完都要**重启 `dsh web`** 并**配置视觉接口**（这是两条总是要做的步骤，见下文）。
+
 ## 快速开始（30 秒）
 
 没装过 DeepSeek Harness？先看官方快速开始：<https://deepseek-harness.github.io/deepseek-harness/guide/quickstart>
