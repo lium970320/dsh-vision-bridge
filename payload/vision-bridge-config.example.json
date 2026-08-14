@@ -1,0 +1,6 @@
+{
+  "apiBase": "https://api.openai.com/v1",
+  "model": "gpt-5.1",
+  "apiKeyEnv": "OPENAI_API_KEY",
+  "apiKey": ""
+}
