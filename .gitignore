@@ -1,0 +1,6 @@
+# 本地视觉接口配置（可能包含密钥），禁止提交
+vision-bridge-config.json
+
+# 依赖与日志
+node_modules/
+*.log
