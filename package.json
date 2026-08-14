@@ -1,0 +1,29 @@
+{
+  "name": "@lium970320/dsh-vision-bridge",
+  "version": "0.1.1",
+  "description": "DSH 视觉桥接插件：让无视觉能力的主模型看图（会话收图 + 自动转文字 + view_image 工具）",
+  "type": "module",
+  "private": false,
+  "files": [
+    "dsh-view-image.js",
+    "apply-vision-patch.js",
+    "cordis.patch.yml",
+    "install.ps1",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "test": "node dsh-view-image.js",
+    "setup": "powershell -NoProfile -ExecutionPolicy Bypass -File ./install.ps1"
+  },
+  "keywords": ["dsh-plugin", "dsh", "deepseek-harness", "vision", "plugin"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}

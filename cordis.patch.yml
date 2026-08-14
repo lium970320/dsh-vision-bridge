@@ -1,0 +1,4 @@
+# dsh-vision-bridge bundle patch. 安装后由 DSH 的 bundle loader 挂载。
+- insert:
+    - id: dsh-view-image
+      name: './dsh-view-image.js'

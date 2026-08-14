@@ -48,8 +48,9 @@ if (-not (Test-Path $webDir)) {
 
 # 1) copy payload files
 Write-Host '[1/6] copying plugin files ...'
+$pluginSource = if (Test-Path (Join-Path $PSScriptRoot 'payload')) { Join-Path $PSScriptRoot 'payload' } else { $PSScriptRoot }
 foreach ($file in @('dsh-view-image.js', 'apply-vision-patch.js')) {
-    Copy-Item (Join-Path $payloadDir $file) (Join-Path $webDir $file) -Force
+    Copy-Item (Join-Path $pluginSource $file) (Join-Path $webDir $file) -Force
     Write-Host "       copied $file"
 }
 
