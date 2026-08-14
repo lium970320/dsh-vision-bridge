@@ -30,7 +30,6 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$payloadDir = Join-Path $PSScriptRoot 'payload'
 $dshHome = if ($env:DSH_HOME) { $env:DSH_HOME } else { Join-Path $env:USERPROFILE '.dsh' }
 $webDir = Join-Path $dshHome 'profiles\web'
 $patchYml = Join-Path $webDir 'cordis.patch.yml'
@@ -46,9 +45,10 @@ if (-not (Test-Path $webDir)) {
     throw "DSH web profile directory not found: $webDir`nMake sure DeepSeek Harness is installed and `dsh web` has been booted at least once."
 }
 
-# 1) copy payload files
+# 1) copy plugin files
 Write-Host '[1/6] copying plugin files ...'
-$pluginSource = if (Test-Path (Join-Path $PSScriptRoot 'payload')) { Join-Path $PSScriptRoot 'payload' } else { $PSScriptRoot }
+# 布局兼容：plugin/（当前）＞ payload/（0.1.x 历史）＞ 仓库根目录
+$pluginSource = if (Test-Path (Join-Path $PSScriptRoot 'plugin')) { Join-Path $PSScriptRoot 'plugin' } elseif (Test-Path (Join-Path $PSScriptRoot 'payload')) { Join-Path $PSScriptRoot 'payload' } else { $PSScriptRoot }
 foreach ($file in @('dsh-view-image.js', 'apply-vision-patch.js')) {
     Copy-Item (Join-Path $pluginSource $file) (Join-Path $webDir $file) -Force
     Write-Host "       copied $file"

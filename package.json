@@ -5,20 +5,19 @@
   "type": "module",
   "private": false,
   "files": [
-    "dsh-view-image.js",
-    "apply-vision-patch.js",
-    "cordis.patch.yml",
+    "plugin",
+    "config",
     "install.ps1",
     "README.md",
     "LICENSE"
   ],
   "dsh": {
     "bundle": {
-      "patch": "./cordis.patch.yml"
+      "patch": "./plugin/cordis.patch.yml"
     }
   },
   "scripts": {
-    "test": "node dsh-view-image.js",
+    "test": "node plugin/dsh-view-image.js",
     "setup": "powershell -NoProfile -ExecutionPolicy Bypass -File ./install.ps1"
   },
   "keywords": ["dsh-plugin", "dsh", "deepseek-harness", "vision", "plugin"],

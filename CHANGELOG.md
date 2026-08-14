@@ -1,5 +1,13 @@
 # CHANGELOG · dsh-vision-bridge
 
+## 0.1.2 · 未发布
+
+目录整理为分层结构：
+
+- 插件本体移入 `plugin/`（`dsh-view-image.js` / `apply-vision-patch.js` / `cordis.patch.yml`），配置样例移入 `config/`，根目录只留文档与安装/发布元数据；
+- `install.ps1` 插件源目录优先 `plugin/`，兼容 `payload/` 与仓库根等旧布局；
+- `package.json` 发布文件清单与 bundle patch 入口（`./plugin/cordis.patch.yml`）同步更新。
+
 ## 0.1.1 · 2026-08-14
 
 视觉接口改为**显式配置（网址 + API）**，彻底移除内置中转地址与自动发现：

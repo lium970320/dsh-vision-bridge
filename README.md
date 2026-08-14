@@ -9,6 +9,21 @@
 3. **内部自动转文字**：图片在模型请求组装层被自动交给视觉模型转成文字描述，主模型只收到文字；
 4. **自觉看图工具**：`view_image` 工具供模型在需要看图时自行调用（支持本地路径 / URL / data URL）。
 
+## 项目结构
+
+```
+dsh-vision-bridge/
+├── plugin/                        # DSH 插件本体（npm bundle patch 入口）
+│   ├── dsh-view-image.js          #   view_image 工具：图片 → 视觉模型 → 文字描述
+│   ├── apply-vision-patch.js      #   pi-ai 适配器补丁（幂等，可重复运行）
+│   └── cordis.patch.yml           #   bundle patch 声明（name 相对本目录解析）
+├── config/
+│   └── vision-bridge-config.example.json   # 视觉接口配置样例（复制为 vision-bridge-config.json 使用）
+├── install.ps1                    # 一键安装脚本（复制/登记/声明/配置/补丁/自测）
+├── package.json                   # npm 发布元数据（files 白名单 + bundle patch 入口）
+├── README.md / CHANGELOG.md / LICENSE / VERSION.txt / .gitignore
+```
+
 ## 快速开始（30 秒）
 
 没装过 DeepSeek Harness？先看官方快速开始：<https://deepseek-harness.github.io/deepseek-harness/guide/quickstart>
@@ -68,7 +83,7 @@ powershell -ExecutionPolicy Bypass -File install.ps1
 
 ## 手动安装（想自己控制每一步时）
 
-1. 复制 `payload/dsh-view-image.js`、`payload/apply-vision-patch.js` 到 `~/.dsh/profiles/web/`；
+1. 复制 `plugin/dsh-view-image.js`、`plugin/apply-vision-patch.js` 到 `~/.dsh/profiles/web/`；
 2. 在 `~/.dsh/profiles/web/cordis.patch.yml` 追加：
 
    ```yaml
@@ -91,7 +106,7 @@ powershell -ExecutionPolicy Bypass -File install.ps1
                - image
    ```
 
-4. **写视觉接口配置** `~/.dsh/profiles/web/vision-bridge-config.json`（样例见 `payload/vision-bridge-config.example.json`）：
+4. **写视觉接口配置** `~/.dsh/profiles/web/vision-bridge-config.json`（样例见 `config/vision-bridge-config.example.json`）：
 
    ```json
    {
