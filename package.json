@@ -1,5 +1,5 @@
 {
-  "name": "@lium970320/dsh-vision-bridge",
+  "name": "@liu__min/dsh-vision-bridge",
   "version": "0.1.1",
   "description": "DSH 视觉桥接插件：让无视觉能力的主模型看图（会话收图 + 自动转文字 + view_image 工具）",
   "type": "module",
